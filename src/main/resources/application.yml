@@ -1,0 +1,18 @@
+server:
+  port: 6401
+spring:
+  rabbitmq:
+    host: 192.168.1.160
+    port: 32100
+    username: adatabackup
+    password: adatabackup
+    virtual-host: /adatabackup
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 1
+        retry:
+          enabled: true
+          max-attempts: 2
+          initial-interval: 5000
+    auction-queue: auction

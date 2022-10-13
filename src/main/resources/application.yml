@@ -2,11 +2,11 @@ server:
   port: 6401
 spring:
   rabbitmq:
-    host: 192.168.1.160
-    port: 32100
-    username: adatabackup
-    password: adatabackup
-    virtual-host: /adatabackup
+    host: localhost
+    port: 5432
+    username: guest
+    password: guest
+    virtual-host: /
     listener:
       simple:
         acknowledge-mode: manual

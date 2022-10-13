@@ -1,13 +1,17 @@
 package com.example.springbootamqp.component;
 
 import com.example.springbootamqp.config.RBMQConfig;
+import com.example.springbootamqp.model.Person;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class RBMQConsumer {
 
     AmqpAdmin amqpAdmin;
@@ -38,8 +42,8 @@ public class RBMQConsumer {
     }
 
     @RabbitListener(queues = "defaultQueue")
-    public void defaultQueueListener(String msg, Message message, Channel channel) {
-        System.out.println(msg);
+    public void defaultQueueListener(Person msg, Message message, Channel channel) throws IOException {
+        System.out.println(msg.getName());
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
-
 }

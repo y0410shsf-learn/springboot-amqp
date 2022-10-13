@@ -1,14 +1,17 @@
 package com.example.springbootamqp.component;
 
+import com.example.springbootamqp.model.Person;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.CustomExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class RBMQSender {
 
     private RabbitTemplate rabbitTemplate;
@@ -27,6 +30,14 @@ public class RBMQSender {
         createExchangeQueueAndBind(exchangeName, queueName, routingKey);
 
         rabbitTemplate.convertAndSend(exchangeName, routingKey, msg);
+
+    }
+
+    public void sendMsg(String exchangeName, String queueName, String routingKey, Person p) {
+
+        createExchangeQueueAndBind(exchangeName, queueName, routingKey);
+
+        rabbitTemplate.convertAndSend(exchangeName, routingKey, p);
 
     }
 

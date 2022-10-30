@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
@@ -13,22 +12,20 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Slf4j
 @Component
-public class RBMQDelayQueue1 {
+public class RBMQDelayQueuePlugin {
 
     AmqpAdmin amqpAdmin;
 
-    public RBMQDelayQueue1(AmqpAdmin amqpAdmin,
-                           RabbitTemplate rabbitTemplate) {
+    public RBMQDelayQueuePlugin(AmqpAdmin amqpAdmin,
+                                RabbitTemplate rabbitTemplate) {
 
         this.amqpAdmin = amqpAdmin;
 
-
         // 建立 exchange,queue,routing key
-        Map<String, Object> args = new HashMap<>();
+//        Map<String, Object> args = new HashMap<>();
 
         DirectExchange exchange = new DirectExchange("delayExchange");
         // 指定為延遲 exchange 類型

@@ -2,8 +2,8 @@ server:
   port: 6401
 spring:
   rabbitmq:
-    host: localhost
-    port: 5432
+    host: 192.168.1.125
+    port: 5672
     username: guest
     password: guest
     virtual-host: /
@@ -16,3 +16,5 @@ spring:
           max-attempts: 2
           initial-interval: 5000
     auction-queue: auction
+    template:
+      mandatory: false  # 關閉強制投遞

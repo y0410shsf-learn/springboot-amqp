@@ -16,5 +16,7 @@ spring:
           max-attempts: 2
           initial-interval: 5000
     auction-queue: auction
+    publisher-confirm-type: correlated
+    publisher-returns: true
     template:
-      mandatory: false  # 關閉強制投遞
+      mandatory: true  # 關閉強制投遞

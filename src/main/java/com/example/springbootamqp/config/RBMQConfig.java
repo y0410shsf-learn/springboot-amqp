@@ -23,6 +23,9 @@ public class RBMQConfig {
         // 設定轉換器(json)
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
 
+        // 等同 spring.rabbitmq.template.mandatory，不設這個 returnCallback 不會生效
+        rabbitTemplate.setMandatory(true);
+
         return rabbitTemplate;
     }
 
